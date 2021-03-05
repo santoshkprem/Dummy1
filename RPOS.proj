@@ -8,7 +8,7 @@
         <Configuration>Release</Configuration>
         <UserDir>$(HOMEDRIVE)$(HOMEPATH)</UserDir>
         <SolutionRoot Condition="$(SolutionRoot)==''">$(MSBuildProjectDirectory)</SolutionRoot>
-        <SourcesRoot Condition="$(SourcesRoot)==''">$(SolutionRoot)\6.1</SourcesRoot>
+        <SourcesRoot Condition="$(SourcesRoot)==''">$(SolutionRoot)\</SourcesRoot>
         <BuildVersion Condition="$(BuildVersion) == ''">$(DaytonTime)</BuildVersion>
         <PostUpgradeTask>false</PostUpgradeTask>
         <Release_Location Condition="$(RELEASE_LOCATION) == ''">\\susalp095\dev\product development\product builds\QSR\RPOS CFA VS2010</Release_Location>
@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <BuildSolutionPath>$(SourcesRoot)\BuildUtilities\BuildLH6.1</BuildSolutionPath>
+        <BuildSolutionPath>$(SourcesRoot)</BuildSolutionPath>
         <BorlandPath>C:\Program Files (x86)\Borland\Delphi6\Bin</BorlandPath>
         <DelphiSource>$(SourcesRoot)\POSAdmin\LHDevCfg</DelphiSource>
         <EVC_4_Path>C:\Program Files (x86)\Microsoft eMbedded C++ 4.0\Common\EVC\Bin</EVC_4_Path>
