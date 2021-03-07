@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4">
+
+    <PropertyGroup>
+        <NCRRPOSPath Condition="$(NCRRPOSPath) == ''">C:\NCR</NCRRPOSPath>
+        <BuildUtilitiesPath Condition="$(BuildUtilitiesPath) == ''">$(NCRRPOSPath)\BuildUtilities</BuildUtilitiesPath>
+        <NcrBuildTasksPath Condition="$(NcrBuildTasksPath) == ''">$(BuildUtilitiesPath)</NcrBuildTasksPath>
+        <Configuration>Release</Configuration>
+        <UserDir>$(HOMEDRIVE)$(HOMEPATH)</UserDir>
+        <SolutionRoot Condition="$(SolutionRoot)==''">$(MSBuildProjectDirectory)</SolutionRoot>
+        <SourcesRoot Condition="$(SourcesRoot)==''">$(SolutionRoot)</SourcesRoot>
+        <BuildVersion Condition="$(BuildVersion) == ''">$(DaytonTime)</BuildVersion>
+        <PostUpgradeTask>false</PostUpgradeTask>
+        <Release_Location Condition="$(RELEASE_LOCATION) == ''">\\susalp095\dev\product development\product builds\QSR\RPOS CFA VS2010</Release_Location>
+        <ReleaseLoc>$(Release_Location)\$(BuildVersion)</ReleaseLoc>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <BuildSolutionPath>$(SourcesRoot)\DPOS-Test</BuildSolutionPath>
+        <BorlandPath>C:\Program Files (x86)\Borland\Delphi6\Bin</BorlandPath>
+        <DelphiSource>$(SourcesRoot)\POSAdmin\LHDevCfg</DelphiSource>
+        <EVC_4_Path>C:\Program Files (x86)\Microsoft eMbedded C++ 4.0\Common\EVC\Bin</EVC_4_Path>
+        <MSBuild_Path>C:\Windows\Microsoft.NET\Framework\v4.0.30319</MSBuild_Path>
+        <BuildPoseidonPath>$(SourcesRoot)\SiteServer\PoseidonBuild</BuildPoseidonPath>
+        <SiteServerDotNetPath>$(SourcesRoot)\SiteServerDotNet</SiteServerDotNetPath>
+        <CFALiveContestPath>$(SourcesRoot)\SiteServerDotNet\Application\CFALiveContest</CFALiveContestPath>
+        <RadServiceMgrPath>$(SourcesRoot)\SiteServer\Utilities\RadServiceMgr</RadServiceMgrPath>
+	<WixDynamicPath>$(SourcesRoot)\Installation\WiX\QSR_POS_CFA\GenerateDynamicFiles</WixDynamicPath>
+        <WixPackagePath>$(SourcesRoot)\Installation\WiX\QSR_POS_CFA</WixPackagePath>
+    </PropertyGroup>
+
+    <Target Name="POS_Build">
+	<Exec Command="SET > C:\SIG\Lighthouse61NT_EV.log" />       
+        <Exec Command="&quot;$(MSBuild_Path)\MSBuild&quot; DPOS-Test.sln /t:Rebuild /p:VisualStudioVersion=10.0 /maxcpucount /noconsolelogger /fl /flp:logfile=&quot;$(SolutionRoot)\DPOS-Test.log&quot;;verbosity=normal /p:Configuration=&quot;Release&quot;" WorkingDirectory="$(BuildSolutionPath)"/>
+
+    </Target>
+
+
+    <Target Name="Build" DependsOnTargets="POS_Build" />
+
+</Project>
